@@ -18,7 +18,6 @@ var candy = function(ratings) {
     // 为啥我们需要去 初始化一个数组呢
     // 首先 每个孩子都至少会分到 一颗糖果
     let candyArr = new Array(ratings.length).fill(1);
-    
 
     // 然后我们去找 左边比 i 小的部分
     for (let i = 1; i < ratings.length; i++) {
