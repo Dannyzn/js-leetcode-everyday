@@ -18,3 +18,35 @@
 // 输入: [ [1,2], [2,3] ]
 // 输出: 0
 // 解释: 你不需要移除任何区间，因为它们已经是无重叠的了。
+
+
+// 思路分析:
+
+// 首先 我们都知道是 排序, 但是究竟是按照右边界排序 还是按照左边界排序 可能我真的不会了
+
+// 我们可以认识这是一个难点
+
+
+var eraseOverlapIntervals = function(intervals) {
+    // 右排序
+    intervals.sort((a, b) => {
+        return a[1] - b[1]
+    })
+    // // [[1,2], [2,3], [1,3], [3,4]]
+
+    let count = 1;
+    let end = intervals[0][1]  // [1,2] --> 2
+
+    for (let i = 1; i < intervals.length; i++) {
+        let interval = intervals[i];
+
+        // if (end > interval[1]) {
+        // 2 >= 2
+        if (interval[0] >= end) {   
+            count += 1;
+            end = interval[1]
+        }
+    }
+
+    return intervals.length - count;
+}
