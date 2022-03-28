@@ -39,7 +39,6 @@ var eraseOverlapIntervals = function(intervals) {
 
     for (let i = 1; i < intervals.length; i++) {
         let interval = intervals[i];
-
         // if (end > interval[1]) {
         // 2 >= 2
         if (interval[0] >= end) {   
@@ -49,4 +48,28 @@ var eraseOverlapIntervals = function(intervals) {
     }
 
     return intervals.length - count;
+}
+
+
+// 左排序
+
+var eraseOverlapIntervals = function(intervals) {
+    // 按照 左排序升序排列
+    intervals.sort((a, b) => {
+        return  a[0] - b[0]
+    })
+    // // [[1,2], [1,3], [2,3], [3,4]]
+    let count = 1;
+    let end = intervals[intervals.length-1][0];
+
+    for (let i = intervals.length - 2; i >= 0; i--) {
+        if (intervals[i][1] <= end) {
+            count++;
+            end = intervals[i][0]
+        }
+    }
+
+    // count 是记录最大的非重复区间的个数
+    return intervals.length - count;
+    // 抄完了 哈哈
 }
