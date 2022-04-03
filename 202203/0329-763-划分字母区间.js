@@ -50,9 +50,12 @@ var partitionLabels = function(s) {
     let left = 0, right = 0;
 
     for (let i = 0; i < s.length; i++) {
-        console.log('right', right, 'hash[s[i]]', hash[s[i]])
+        //console.log('right', right, 'hash[s[i]]', hash[s[i]])
+        // if tight === i.  8 === 8 找到了最远的距离的时候 我们就可以开始找到这个字符最大的距离 哈哈哈
+        // 我们需要拿出 这个片段 和 重新更新 left 
         right = Math.max(right, hash[s[i]])
         if (right === i) {
+            //console.log(right). // 8, 15, 23
             result.push(right - left + 1)
             left = i+1
         }
