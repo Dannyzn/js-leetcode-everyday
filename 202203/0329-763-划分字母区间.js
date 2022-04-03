@@ -18,5 +18,44 @@
 
 // 说明 这个边界就是分割点了
 
+// 代码实现: 
+
+var partitionLabels = function(s) {
+    let hash = {};
+
+    // 将数组元素转为 用map存取的方式
+    // [s[i], i]
+    // 根据相同的值 去 全部 更新相同字符出现的最后位置
+    for (let i = 0; i < s.length; i++) {
+        hash[s[i]] = i;
+    }
+
+    // {
+    //     a: 8,
+    //     b: 5,
+    //     c: 7,
+    //     d: 14,
+    //     e: 15,
+    //     f: 11,
+    //     g: 13,
+    //     h: 19,
+    //     i: 22,
+    //     j: 23,
+    //     k: 20,
+    //     l: 21
+    // }
 
 
+    let result = [];
+    let left = 0, right = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        console.log('right', right, 'hash[s[i]]', hash[s[i]])
+        right = Math.max(right, hash[s[i]])
+        if (right === i) {
+            result.push(right - left + 1)
+            left = i+1
+        }
+    }
+    return result;
+}
